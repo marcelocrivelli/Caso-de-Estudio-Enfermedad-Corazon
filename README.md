@@ -52,4 +52,4 @@ Una vez obtenidos los datasets finales, se importaron en RapidMiner. Se generó 
 El modelo utilizado fue Random Forest, con una profundidad máxima de 15 de los 100 árboles. El criterio por los que los atributos son seleccionados para el splitting es gain_ratio.
 
 
-Los resultados no fueron muy alentadores, se obtuvó un porcentaje de predicción de 52.83% +/- 3.38%. El recall para la clase 0 (estrechamienteo menor a 50% de diámetro de los vasos) fue muy bueno 89.6% pero el de las otras clases no (1 = 41.36%; 2 = 10%; 3 = 15.91%; 4 = 0%). La precisión para la clase 0 fue buena 69.48% como se vió en el recall, pero las otras fueron bastante bajas.
+Los resultados no fueron muy alentadores, se obtuvó un porcentaje de predicción de 52.83% +/- 3.38%. El recall para la clase 0 (estrechamienteo menor a 50% de diámetro de los vasos) fue muy bueno 89.6% pero el de las otras clases no (1 = 41.36%; 2 = 10%; 3 = 15.91%; 4 = 0%). La precisión para la clase 0 fue buena 69.48% como se vió en el recall, pero las otras fueron bastante bajas. Se cree que estos valores no tan buenos se deben a la gran cantidad de datos faltantes para los valores de los atributos.
