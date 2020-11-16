@@ -28,3 +28,10 @@ Cada base de datos tiene el mismo formato de los ejemplos. Las bases tienen 76 a
   <li><b>num</b>: diagnóstico de cardiopatía (estado de la enfermedad angiográfica) (0 = estrechamiento de < 50% de diámetro; 1 = estrechamiento > 50% de diámetro (en cualquier vaso importante del corazón)
 </ul>
 
+La variable objetivo para este caso de estudio es num. Se generó un modelo en RapidMiner para realizar la predicción de esta enfermedad del corazón.
+
+Los datos se encuentran con una extensión .data. Cada 10 líneas del archivo se tiene los 76 atributos de un paciente. Para lograr importar estos datasets a RapidMiner se precisa de tener todos los atributos de cada paciente en una línea. Por lo que fue necesario desarrollar un script en python (orderdata.py) para colocar los datos de cada paciente en una línea separados por un espacio. Este script fue aplicado a las 4 base de datos.
+
+Una vez obtenidos los datasets finales, se importaron en RapidMiner. Se generó un proceso colocando los 4 datasets y uniendolos con el operador Append. Como se tenían los datos con todos los atributos (76) se colocó un operador para seleccionar los 14 más importantes detallados anteriormente.
+
+El modelo para predecir esto se realizó con RapidMiner, importando los 4 datasets y uniendolos. Se utilizó el modelo de Random Forest, con una profundidad máxima de 15 de los 100 árboles. El criterio por los que los atributos son seleccionados para el splitting es gain_ratio.
