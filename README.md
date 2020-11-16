@@ -46,7 +46,7 @@ Se detectaron muchos valores faltantes para los atributos importantes:
   <li>slope: 308</li>
   <li>ca: 608</li>
   <li>thal: 477</li>
-</li>
+</ul>
 
 Una vez obtenidos los datasets finales, se importaron en RapidMiner. Se generó un proceso colocando los 4 datasets y uniéndolos con el operador Append. Como se tenían los datos con todos los atributos (76) se colocó un operador para seleccionar los 14 más importantes detallados anteriormente. Los valores faltantes fueron identificados con el operador Declare Missing Values para los que tienen valor -9. Luego se colocó el operador Replace Missing Values para probar diferentes formas de tratar los valores faltantes(promedio de atributos, valor máximo, valor mínimo, vacío). Para identificar el atributo objetivo se usó el operador Set Role en la columna num. Cross Validation fue utilizado para estimar el performance estadistico del modelo.
 El modelo utilizado fue Random Forest, con una profundidad máxima de 15 de los 100 árboles. El criterio por los que los atributos son seleccionados para el splitting es gain_ratio.
