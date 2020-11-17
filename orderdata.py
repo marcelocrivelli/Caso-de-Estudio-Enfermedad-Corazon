@@ -26,8 +26,6 @@ out = open(fileName + "final.data", "w")
 
 for i in data:
 	out.write(i + '\n')
-	# if i.split(' ')[0] == '298':
-	# 	break
 
 print(len(data))
 
