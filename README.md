@@ -3,10 +3,10 @@
 El siguiente caso de estudio es sobre la predicción de enfermedades del corazón en distintos pacientes. Los datos para este problema provienen de 4 bases de datos:
 
 <ul>
-  <li>Cleveland Clinic Foundation</li>
-  <li>Hungarian Institute of Cardiology, Budapest</li>
-  <li>V.A. Medical Center, Long Beach, CA</li>
-  <li>University Hospital, Zurich, Switzerland</li>
+  <li>Cleveland Clinic Foundation (cleveland.data)</li>
+  <li>Hungarian Institute of Cardiology, Budapest (hungarian.data)</li>
+  <li>V.A. Medical Center, Long Beach, CA (long-beach-va.data)</li>
+  <li>University Hospital, Zurich, Switzerland (switzerland.data)</li>
 </ul>
 
 Cada base de datos tiene el mismo formato de los ejemplos. Las bases tienen 76 atributos en total. De estos atributos, los más importantes son 14:
