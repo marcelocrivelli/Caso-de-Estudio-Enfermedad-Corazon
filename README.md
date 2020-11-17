@@ -25,10 +25,10 @@ Cada base de datos tiene el mismo formato de los ejemplos. Las bases tienen 76 a
   <li><b>slope</b>: la pendiente del eje de pico segmento ST (0 = pendiente ascendente; 1 = plana; 2 = pendinete descendente) (Polynominal)</li>
   <li><b>ca</b>: número de vasos principales (0-3) coloreados por flourosopy (Polynominal)</li>
   <li><b>thal</b>: (3 = normal; 6 = defecto fijo; 7 = defecto reversible) (Polynominal)</li>
-  <li><b>num</b>: diagnóstico de cardiopatía (estado de la enfermedad angiográfica) (0: estrechamiento de < 50% de diámetro; 1,2,3,4 : estrechamiento > 50% de diámetro (en cualquier vaso importante del corazón) (Polynominal) </li>
+  <li><b>num</b>: diagnóstico de cardiopatía (estado de la enfermedad angiográfica) (0: estrechamiento de < 50% de diámetro; =/0 : estrechamiento > 50% de diámetro (en cualquier vaso importante del corazón, los atributos 59 al 68 son los vasos) (Polynominal) </li>
 </ul>
 
-La variable objetivo para este caso de estudio es num, que indica la presencia (valor 0) o no de la enfermedad del corazón en el paciente (valor 1,2,3,4). Se generó un modelo en RapidMiner para realizar la predicción.
+La variable objetivo para este caso de estudio es num, que indica la presencia (valor 0) o no de la enfermedad del corazón en el paciente (distinto a 0). Se generó un modelo en RapidMiner para realizar la predicción.
 
 Los datos se encuentran con una extensión ".data". Cada 10 líneas de cualquiera de los archivos se tiene los 76 atributos de un paciente. Para lograr importar estos datasets a RapidMiner se precisa de tener todos los atributos de cada paciente en una línea separados. Por lo que fue necesario desarrollar un script en python (orderdata.py) para colocar los datos de cada paciente en una línea separados por un espacio. Este script fue aplicado a las 4 base de datos.
 
@@ -47,8 +47,8 @@ Los valores faltantes para los atributos están representados con "-9". Se detec
   <li>thal: 477</li>
 </ul>
 
-Una vez obtenidos los datasets finales, se importaron en RapidMiner. Se generó un proceso colocando los 4 datasets y uniéndolos con el operador Append. Como se tenían los datos con todos los atributos (76) se colocó un operador para seleccionar los 14 más importantes detallados anteriormente. Los valores faltantes fueron identificados con el operador Declare Missing Values para los que tienen valor -9. Luego se colocó el operador Replace Missing Values para probar diferentes formas de tratar los valores faltantes(promedio de atributos, valor máximo, valor mínimo, vacío). Para identificar el atributo objetivo se usó el operador Set Role en la columna num. Cross Validation fue utilizado para estimar el performance estadistico del modelo.
+Una vez obtenidos los datasets finales, se importaron en RapidMiner. Se generó un proceso colocando los 4 datasets y uniéndolos con el operador Append. Como se tenían los datos con todos los atributos (76) se colocó un operador para seleccionar los 14 más importantes detallados anteriormente. Los valores faltantes fueron identificados con el operador Declare Missing Values para los que tienen valor -9. Luego se colocó el operador Replace Missing Values para probar diferentes formas de tratar los valores faltantes(promedio de atributos). Luego se uso el operador Generate Attributes para cambiar el valor de num de los que son distintos de 0 (tienen la enfermedad del corazón) a el valor 1. Este último se usa para que la variable objetivo tenga dos posibilidades (0 = No enfermo, 1 = Si). Para identificar el atributo objetivo se usó el operador Set Role en label para la columna num. Cross Validation fue utilizado para estimar el performance estadístico del modelo.
 El modelo utilizado fue Random Forest, con una profundidad máxima de 15 de los 100 árboles. El criterio por los que los atributos son seleccionados para el splitting es gain_ratio.
 
 
-Los resultados no fueron muy alentadores, se obtuvó un porcentaje de predicción de 52.83% +/- 3.38%. El recall para la clase 0 (estrechamienteo menor a 50% de diámetro de los vasos) fue muy bueno 89.6% pero el de las otras clases no (1 = 41.36%; 2 = 10%; 3 = 15.91%; 4 = 0%). La precisión para la clase 0 fue buena 69.48% como se vió en el recall, pero las otras fueron bastante bajas. Se cree que estos valores no tan buenos se deben a la gran cantidad de datos faltantes para los valores de los atributos.
+Los resultados fueron muy alentadores, se obtuvó un porcentaje de predicción de 81.21% +/- 3.91%. El recall para la clase 0 (sin enfermedad) fue bastante bueno 75.99%, el de la otras clase 1 fue mejor 85.45%. La precisión para la clase 0 fue muy buena 81% casi igual a la de la clase 1 81.35%.
