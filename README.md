@@ -25,15 +25,14 @@ Cada base de datos tiene el mismo formato de los ejemplos. Las bases tienen 76 a
   <li><b>slope</b>: la pendiente del eje de pico segmento ST (0 = pendiente ascendente; 1 = plana; 2 = pendinete descendente) (Polynominal)</li>
   <li><b>ca</b>: número de vasos principales (0-3) coloreados por flourosopy (Polynominal)</li>
   <li><b>thal</b>: (3 = normal; 6 = defecto fijo; 7 = defecto reversible) (Polynominal)</li>
-  <li><b>num</b>: diagnóstico de cardiopatía (estado de la enfermedad angiográfica) (0 = estrechamiento de < 50% de diámetro; 1 = estrechamiento > 50% de diámetro (en cualquier vaso importante del corazón) (Polynominal) </li>
+  <li><b>num</b>: diagnóstico de cardiopatía (estado de la enfermedad angiográfica) (0: estrechamiento de < 50% de diámetro; 1,2,3,4 : estrechamiento > 50% de diámetro (en cualquier vaso importante del corazón) (Polynominal) </li>
 </ul>
 
-Los valores faltantes para los atributos están representados con "-9".
-La variable objetivo para este caso de estudio es num. Se generó un modelo en RapidMiner para realizar la predicción de esta enfermedad del corazón.
+La variable objetivo para este caso de estudio es num, que indica la presencia (valor 0) o no de la enfermedad del corazón en el paciente (valor 1,2,3,4). Se generó un modelo en RapidMiner para realizar la predicción.
 
 Los datos se encuentran con una extensión ".data". Cada 10 líneas de cualquiera de los archivos se tiene los 76 atributos de un paciente. Para lograr importar estos datasets a RapidMiner se precisa de tener todos los atributos de cada paciente en una línea separados. Por lo que fue necesario desarrollar un script en python (orderdata.py) para colocar los datos de cada paciente en una línea separados por un espacio. Este script fue aplicado a las 4 base de datos.
 
-Se detectaron muchos valores faltantes para los atributos importantes:
+Los valores faltantes para los atributos están representados con "-9". Se detectaron muchos valores faltantes para los atributos importantes:
 
 <ul>
   <li>trestbps: 59</li>
